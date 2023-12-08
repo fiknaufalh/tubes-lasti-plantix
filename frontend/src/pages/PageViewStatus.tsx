@@ -1,9 +1,10 @@
 import Sidebar from "../components/Sidebar";
 import Welcome from "../components/Welcome";
+import StatusCard from "../components/StatusCard";
 // import data from "../dataOrder.json";
 // import TableOrder from "../components/TableOrder";
 
-export default function PageManageOrder() {
+export default function PageViewStatus() {
     // const tenantid = us    const { user, logout } = useAuth();
     // const [showProfileDropDown, setShowProfileDropDown] = useState(false);
 
@@ -47,8 +48,11 @@ export default function PageManageOrder() {
                 <div className="mx-20 row-span-1 mt-9 py-3">
                     <Welcome />
                 </div>
-                <div className="mx-20 mt-6 mb-9 py-4 bg-white rounded-3xl h-auto">
-                    {/* <TableOrder data={databytenant} /> */}
+                <div className="mx-20 mt-6 mb-9 py-8 bg-white rounded-3xl h-auto">
+                    <h2 className="text-plantix-yellow text-5xl font-bold ms-16">
+                        Status
+                    </h2>
+                    <StatusCard />
                 </div>
             </div>
         </div>

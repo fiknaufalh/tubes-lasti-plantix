@@ -51,7 +51,7 @@ export default function Sidebar(props: any) {
                                     />
                                 </svg>
                             </div>
-                            <span className="flex ms-14 whitespace-nowrap text-lg text-left">
+                            <span className="flex ms-14 whitespace-nowrap text-xl text-left">
                                 {props[`menu${index + 1}`]}
                             </span>
                         </a>
@@ -89,7 +89,7 @@ export default function Sidebar(props: any) {
                                     />
                                 </svg>
                             </div>
-                            <span className="flex-1 ms-14 whitespace-nowrap text-lg text-left">
+                            <span className="flex-1 ms-14 whitespace-nowrap text-xl text-left">
                                 {props[`menu${props.current}`]}
                             </span>
                         </a>
@@ -106,7 +106,7 @@ export default function Sidebar(props: any) {
                 data-drawer-toggle="default-sidebar"
                 aria-controls="default-sidebar"
                 type="button"
-                className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg lg:hidden"
+                className="inline-flex items-center p-2 mt-2 ms-3 text-md text-gray-500 rounded-lg lg:hidden"
             >
                 <span className="sr-only">Open sidebar</span>
                 <svg

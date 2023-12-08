@@ -3,11 +3,10 @@ import React from 'react';
 interface WelcomeProps {
     fontSize?: string;
     margin?: string;
-    user: string;
 }
 
-const Welcome: React.FC<WelcomeProps> = ({ fontSize, margin, user }) => {
-    return <h1 className="font-nunito font-bold text-xl text-black-1000" style={{ fontSize, margin }}>Welcome, {user}!</h1>;
+const Welcome: React.FC<WelcomeProps> = ({ fontSize, margin }) => {
+    return <h1 className="font-nunito font-bold text-3xl text-white" style={{ fontSize, margin }}>Selamat datang di <span className='text-plantix-yellow'>Plantix</span> !</h1>;
 };
 
 export default Welcome;
