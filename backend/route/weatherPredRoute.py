@@ -8,6 +8,11 @@ import requests
 
 prediction_router = APIRouter(tags=['Weather Prediction'])
 
+@prediction_router.get("/weather-prediction")
+def get_weather_predictions(db: Session = Depends(get_db)):
+    predictions = db.query(models.WeatherPrediction).all()
+    return predictions
+
 @prediction_router.get("/weather-prediction/{id_location}}")
 def get_weather_prediction(db: Session = Depends(get_db), id_location: int = 1):
     predictions = db.query(models.WeatherPrediction).filter(models.WeatherPrediction.loc_id == id_location).all()
