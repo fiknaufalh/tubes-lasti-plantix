@@ -31,7 +31,7 @@ async def add_sensor(item: schemas.SensorPost, db: Session = Depends(get_db)):
     db.add(sensor)
     db.commit()
     db.refresh(sensor)
-    added_sensor = db.query(models.Sensor).filter(models.Sensor.sensor_id == sensor_id).first()
+    added_sensor = db.query(models.Sensor).filter(models.Sensor.sensor_id == sensor.sensor_id).first()
     return {f"sensor_id: {added_sensor.sensor_id} ", "message: Successfully create new sensor"}
 
 # Put sensor
