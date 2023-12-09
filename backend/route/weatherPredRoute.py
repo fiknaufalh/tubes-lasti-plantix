@@ -16,7 +16,7 @@ def get_weather_prediction(db: Session = Depends(get_db), id_location: int = 1):
     return predictions
 
 @prediction_router.post("/weather-prediction")
-def create_weather_prediction(weather_prediction: schemas.WeatherPrediction, db: Session = Depends(get_db)):
+def add_weather_prediction(weather_prediction: schemas.WeatherPrediction, db: Session = Depends(get_db)):
     db_prediction = models.WeatherPrediction(
         loc_id=weather_prediction.loc_id,
         timestamp=weather_prediction.timestamp,
