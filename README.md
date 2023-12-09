@@ -12,3 +12,5 @@ Informasi cuaca yang terperinci dan prediksi jangka pendek serta panjang sangat 
 Website : https://tubes-lasti-plantix.vercel.app/
 
 Dokumen : https://docs.google.com/document/d/1qly2A4eggjKksLQ_K48Sc7FG0lqxhKL9drG01g3NmK4/edit
+
+API : https://plantix.azurewebsites.net/docs#

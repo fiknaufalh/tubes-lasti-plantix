@@ -1,13 +1,13 @@
 import { MouseEventHandler, useCallback, useState } from "react";
 import moment from "moment";
 interface Props {
-    sensorID: number;
-    locationID: number;
+    sensor_id: number;
+    loc_id: number;
     timestamp: string;
     temperature: number;
-    airhumidity: number;
-    soilhumidity: number;
-    lightintensity: number;
+    air_humidity: number;
+    soil_humidity: number;
+    light_intensity: number;
 }
 
 function TableData({ data }: { data: Props[] }) {
@@ -71,7 +71,7 @@ function TableData({ data }: { data: Props[] }) {
             </button>
         );
     }
-    const [sortKey, setSortKey] = useState<SortKeys>("sensorID");
+    const [sortKey, setSortKey] = useState<SortKeys>("sensor_id");
     const [sortOrder, setSortOrder] = useState<SortOrder>("ascn");
 
     const sortedData = useCallback(
@@ -209,8 +209,8 @@ function TableData({ data }: { data: Props[] }) {
                                 <div className="flex items-center font-semibold">
                                     Sensor ID
                                     <SortButton
-                                        columnKey={"sensorID"}
-                                        onClick={() => changeSort("sensorID")}
+                                        columnKey={"sensor_id"}
+                                        onClick={() => changeSort("sensor_id")}
                                         {...{
                                             sortOrder,
                                             sortKey,
@@ -222,8 +222,8 @@ function TableData({ data }: { data: Props[] }) {
                                 <div className="flex items-center font-semibold">
                                     Location ID
                                     <SortButton
-                                        columnKey={"locationID"}
-                                        onClick={() => changeSort("locationID")}
+                                        columnKey={"loc_id"}
+                                        onClick={() => changeSort("loc_id")}
                                         {...{
                                             sortOrder,
                                             sortKey,
@@ -274,7 +274,7 @@ function TableData({ data }: { data: Props[] }) {
                                 return (
                                     <tr
                                         className="odd:bg-white even:bg-gray-50 border-b"
-                                        key={record.sensorID}
+                                        key={record.sensor_id}
                                     >
                                         <td className="px-6 py-4">
                                             {index +
@@ -283,10 +283,10 @@ function TableData({ data }: { data: Props[] }) {
                                                 recordsPerPage}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            {record.sensorID}
+                                            {record.sensor_id}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            {record.locationID}
+                                            {record.loc_id}
                                         </td>
                                         <td className="px-6 py-4 whitespace-normal">
                                             {date}
@@ -295,13 +295,13 @@ function TableData({ data }: { data: Props[] }) {
                                             {record.temperature} °C
                                         </td>
                                         <td className="px-6 py-4 whitespace-normal">
-                                            {record.airhumidity} %
+                                            {record.air_humidity} %
                                         </td>
                                         <td className="px-6 py-4 whitespace-normal">
-                                            {record.soilhumidity} %
+                                            {record.soil_humidity} %
                                         </td>
                                         <td className="px-6 py-4 whitespace-normal">
-                                            {record.lightintensity} lux
+                                            {record.light_intensity} lux
                                         </td>
                                     </tr>
                                 );
