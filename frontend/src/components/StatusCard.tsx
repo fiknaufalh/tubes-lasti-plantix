@@ -1,4 +1,12 @@
-export default function StatusCard(props: any) {
+// type Status = {
+//     statusid: number;
+//     sensorcode: number;
+//     watering: boolean;
+//     fertilizing: boolean;
+//     pestdetection: boolean;
+// }
+
+export default function StatusCard() {
     return (
         <div className="font-nunito flex bg-white justify-start py-10 md:flex-row mx-16">
             <div className="flex flex-col w-40 leading-normal">
