@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 # from routes.restaurantsRoute import restaurants_router
 # from routes.usersRoute import users_router, authentication
 # from routes.universityRoute import university_router
+from route.weatherPredRoute import prediction_router
 import database.models as models
 from database.database import engine
 import uvicorn
@@ -27,6 +28,7 @@ app.add_middleware(
 async def read_root():
     return "Welcome to U-Canteen!"
 
+app.include_router(prediction_router)
 # Include routers with correct prefixes
 # app.include_router(authentication)
 # app.include_router(users_router)
