@@ -4,6 +4,7 @@ interface Props {
     sensorID: number;
     locationID: number;
     timestamp: string;
+    temperature: number;
     airhumidity: number;
     soilhumidity: number;
     lightintensity: number;
@@ -240,6 +241,12 @@ function TableData({ data }: { data: Props[] }) {
                                 scope="col"
                                 className="px-6 py-3 font-semibold whitespace-nowrap"
                             >
+                                Temperature
+                            </th>
+                            <th
+                                scope="col"
+                                className="px-6 py-3 font-semibold whitespace-nowrap"
+                            >
                                 Air Humidity
                             </th>
                             <th
@@ -285,13 +292,16 @@ function TableData({ data }: { data: Props[] }) {
                                             {date}
                                         </td>
                                         <td className="px-6 py-4 whitespace-normal">
-                                            {record.airhumidity}
+                                            {record.temperature} °C
                                         </td>
                                         <td className="px-6 py-4 whitespace-normal">
-                                            {record.soilhumidity}
+                                            {record.airhumidity} %
                                         </td>
                                         <td className="px-6 py-4 whitespace-normal">
-                                            {record.lightintensity}
+                                            {record.soilhumidity} %
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-normal">
+                                            {record.lightintensity} lux
                                         </td>
                                     </tr>
                                 );
