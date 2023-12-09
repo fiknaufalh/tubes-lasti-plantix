@@ -10,8 +10,8 @@ export default function Logo(props: LogoProps) {
     return (
         <a href={props.default}>
             <img
-                src="../../public/images/Plantix.png"
-                alt="MealsHub"
+                src="../../images/Plantix.png"
+                alt="Plantix"
                 className={`flex object-contain 
                     ${height ? `h-${height}` : ""} 
                     ${width ? `w-${width}` : ""}`}

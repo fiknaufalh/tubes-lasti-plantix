@@ -1,0 +1,162 @@
+[
+    {
+        "sensorID": 1,
+        "locationID": 101,
+        "timestamp": "2023-01-01T12:00:00Z",
+        "airhumidity": 60,
+        "soilhumidity": 40,
+        "lightintensity": 800
+    },
+    {
+        "sensorID": 2,
+        "locationID": 106,
+        "timestamp": "2022-01-02T14:30:00Z",
+        "airhumidity": 55,
+        "soilhumidity": 35,
+        "lightintensity": 900
+    },
+    {
+        "sensorID": 3,
+        "locationID": 103,
+        "timestamp": "2023-01-03T10:15:00Z",
+        "airhumidity": 70,
+        "soilhumidity": 50,
+        "lightintensity": 700
+    },
+    {
+        "sensorID": 4,
+        "locationID": 105,
+        "timestamp": "2023-01-04T08:45:00Z",
+        "airhumidity": 65,
+        "soilhumidity": 45,
+        "lightintensity": 750
+    },
+    {
+        "sensorID": 5,
+        "locationID": 108,
+        "timestamp": "2023-01-05T16:20:00Z",
+        "airhumidity": 50,
+        "soilhumidity": 30,
+        "lightintensity": 950
+    },
+    {
+        "sensorID": 6,
+        "locationID": 110,
+        "timestamp": "2023-01-06T11:10:00Z",
+        "airhumidity": 75,
+        "soilhumidity": 55,
+        "lightintensity": 720
+    },
+    {
+        "sensorID": 7,
+        "locationID": 107,
+        "timestamp": "2023-01-07T09:30:00Z",
+        "airhumidity": 58,
+        "soilhumidity": 38,
+        "lightintensity": 890
+    },
+    {
+        "sensorID": 8,
+        "locationID": 112,
+        "timestamp": "2023-01-08T13:15:00Z",
+        "airhumidity": 68,
+        "soilhumidity": 48,
+        "lightintensity": 780
+    },
+    {
+        "sensorID": 9,
+        "locationID": 106,
+        "timestamp": "2023-01-09T14:50:00Z",
+        "airhumidity": 53,
+        "soilhumidity": 33,
+        "lightintensity": 920
+    },
+    {
+        "sensorID": 10,
+        "locationID": 115,
+        "timestamp": "2023-01-10T10:40:00Z",
+        "airhumidity": 72,
+        "soilhumidity": 52,
+        "lightintensity": 700
+    },
+    {
+        "sensorID": 11,
+        "locationID": 113,
+        "timestamp": "2023-01-11T12:05:00Z",
+        "airhumidity": 62,
+        "soilhumidity": 42,
+        "lightintensity": 830
+    },
+    {
+        "sensorID": 12,
+        "locationID": 118,
+        "timestamp": "2023-01-12T15:55:00Z",
+        "airhumidity": 48,
+        "soilhumidity": 28,
+        "lightintensity": 970
+    },
+    {
+        "sensorID": 13,
+        "locationID": 120,
+        "timestamp": "2023-01-13T17:30:00Z",
+        "airhumidity": 78,
+        "soilhumidity": 58,
+        "lightintensity": 710
+    },
+    {
+        "sensorID": 14,
+        "locationID": 114,
+        "timestamp": "2019-01-14T13:20:00Z",
+        "airhumidity": 55,
+        "soilhumidity": 35,
+        "lightintensity": 900
+    },
+    {
+        "sensorID": 15,
+        "locationID": 117,
+        "timestamp": "2023-01-15T11:45:00Z",
+        "airhumidity": 68,
+        "soilhumidity": 48,
+        "lightintensity": 780
+    },
+    {
+        "sensorID": 16,
+        "locationID": 122,
+        "timestamp": "2023-09-16T09:05:00Z",
+        "airhumidity": 60,
+        "soilhumidity": 40,
+        "lightintensity": 840
+    },
+    {
+        "sensorID": 17,
+        "locationID": 116,
+        "timestamp": "2022-01-17T14:55:00Z",
+        "airhumidity": 45,
+        "soilhumidity": 25,
+        "lightintensity": 950
+    },
+    {
+        "sensorID": 18,
+        "locationID": 121,
+        "timestamp": "2023-01-18T16:20:00Z",
+        "airhumidity": 70,
+        "soilhumidity": 50,
+        "lightintensity": 730
+    },
+    {
+        "sensorID": 19,
+        "locationID": 119,
+        "timestamp": "2023-01-19T12:10:00Z",
+        "airhumidity": 52,
+        "soilhumidity": 32,
+        "lightintensity": 910
+    },
+    {
+        "sensorID": 20,
+        "locationID": 124,
+        "timestamp": "2023-01-20T10:35:00Z",
+        "airhumidity": 75,
+        "soilhumidity": 55,
+        "lightintensity": 760
+    }
+]

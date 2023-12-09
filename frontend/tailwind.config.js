@@ -17,6 +17,8 @@ export default {
         "plantix-light-green": "#7DA83B",
         "plantix-dark-green": "#5FA13B",
         "plantix-blue": "#0B828F",
+        "plantix-golden": "#E9C59B",
+        "plantix-greenpalet": "#D1DFDF",
       },
     },
   },
