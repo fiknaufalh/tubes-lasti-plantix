@@ -1,14 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from route.sensorRoute import sensor_router
-# from routes.restaurantsRoute import restaurants_router
-# from routes.usersRoute import users_router, authentication
-# from routes.universityRoute import university_router
 from route.weatherPredRoute import prediction_router
 import database.models as models
 from database.database import engine
 import uvicorn
-
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -23,18 +19,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Default route for the root URL
 @app.get("/")
 async def read_root():
-    return "Welcome to U-Canteen!"
+    return "Welcome to Plantix!"
 
 app.include_router(prediction_router)
-# Include routers with correct prefixes
 app.include_router(sensor_router)
-# app.include_router(users_router)
-# app.include_router(university_router)
-# app.include_router(restaurants_router)
-# app.include_router(menu_items_router)
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="localhost", port=8000, reload=True)
