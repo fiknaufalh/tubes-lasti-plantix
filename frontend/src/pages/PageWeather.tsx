@@ -1,29 +1,35 @@
+import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import TableData from "../components/TableData";
 import Welcome from "../components/Welcome";
-import data from "../dataSensorDummy.json";
-// import data from "../dataOrder.json";
-// import TableOrder from "../components/TableOrder";
+import axios from "axios";
 
+interface Props {
+    sensor_id: number;
+    loc_id: number;
+    timestamp: string;
+    temperature: number;
+    air_humidity: number;
+    soil_humidity: number;
+    light_intensity: number;
+}
 export default function PageWeather() {
-    // const tenantid = us    const { user, logout } = useAuth();
-    // const [showProfileDropDown, setShowProfileDropDown] = useState(false);
+    const [Data, setData] = useState<Props[]>([]);
+    const fetchProducts = async () => {
+        try {
+            // Make the Axios request with the authentication token
+            const response = await axios.get('https://plantix.azurewebsites.net/sensor');
 
-    // const navigate = useNavigate();
-    // const [params] = useSearchParams();
-    // const returnUrl = params.get("returnUrl");
+            setData(response.data);
+            console.log(response.data)
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    };
 
-    // useEffect(() => {
-    //     if (!user) return;
-    //     returnUrl ? navigate(returnUrl) : navigate(returnUrl);
-    // }, [user]);
-
-    // const handleProfileClick = () => {
-    //     setShowProfileDropDown(!showProfileDropDown);
-    // };
-    // const data = joinedOrderPayment();
-    // console.log(data);
-    // const databytenant = data.filter((data: any) => data.tenantId == tenantid);
+    useEffect(() => {
+        fetchProducts();
+    }, []);
     return (
         // Create grid layout for sidebard, header, and main content
         <div className="grid grid-cols-5 grid-rows-8 min-h-screen bg-plantix-light-green">
@@ -50,7 +56,7 @@ export default function PageWeather() {
                     <Welcome />
                 </div>
                 <div className="mx-20 mt-6 mb-9 py-4 bg-white rounded-3xl h-auto">
-                    <TableData data={data} />
+                    <TableData data={Data} />
                 </div>
             </div>
         </div>
