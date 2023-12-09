@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
-import TableData from "../components/TableData";
 import Welcome from "../components/Welcome";
 import axios from "axios";
+import TableWeatherPred from "../components/TableWeatherPred";
 
 interface Props {
-    sensor_id: number;
+    pred_id: number;
     loc_id: number;
     timestamp: string;
     temperature: number;
@@ -18,7 +18,7 @@ export default function PageWeather() {
     const fetchProducts = async () => {
         try {
             // Make the Axios request with the authentication token
-            const response = await axios.get('https://plantix.azurewebsites.net/sensor');
+            const response = await axios.get('https://plantix.azurewebsites.net/weather-prediction');
 
             setData(response.data);
             console.log(response.data)
@@ -56,7 +56,7 @@ export default function PageWeather() {
                     <Welcome />
                 </div>
                 <div className="mx-20 mt-6 mb-9 py-4 bg-white rounded-3xl h-auto">
-                    <TableData data={Data} />
+                    <TableWeatherPred data={Data} />
                 </div>
             </div>
         </div>
