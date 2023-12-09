@@ -19,6 +19,14 @@ class Sensor(BaseModel):
     soil_humidity : float
     light_intensity : float
 
+class WeatherPrediction(BaseModel):
+    loc_id : int
+    timestamp : datetime
+    temperature : float
+    air_humidity : float
+    soil_humidity : float
+    light_intensity : float
+
 class StatusRequest(BaseModel):
     watering : str
     fertilizing : str
