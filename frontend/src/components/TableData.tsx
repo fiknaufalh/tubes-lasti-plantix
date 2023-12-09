@@ -1,15 +1,15 @@
 import { MouseEventHandler, useCallback, useState } from "react";
 import moment from "moment";
 interface Props {
-    orderId: number;
-    paymentId: number;
-    tableId: number;
-    time: number;
-    orderStatus: string;
-    paymentStatus: string;
+    sensorID: number;
+    locationID: number;
+    timestamp: string;
+    airhumidity: number;
+    soilhumidity: number;
+    lightintensity: number;
 }
 
-function TableOrder({ data }: { data: Props[] }) {
+function TableData({ data }: { data: Props[] }) {
     // Const and func for sort
     type Data = typeof data;
 
@@ -53,11 +53,10 @@ function TableOrder({ data }: { data: Props[] }) {
         return (
             <button
                 onClick={onClick}
-                className={`${
-                    sortKey === columnKey && sortOrder === "desc"
-                        ? "sort-button sort-reverse"
-                        : "sort-button"
-                }`}
+                className={`${sortKey === columnKey && sortOrder === "desc"
+                    ? "sort-button sort-reverse"
+                    : "sort-button"
+                    }`}
             >
                 <svg
                     className="w-3 h-3 ms-1.5"
@@ -71,7 +70,7 @@ function TableOrder({ data }: { data: Props[] }) {
             </button>
         );
     }
-    const [sortKey, setSortKey] = useState<SortKeys>("orderId");
+    const [sortKey, setSortKey] = useState<SortKeys>("sensorID");
     const [sortOrder, setSortOrder] = useState<SortOrder>("ascn");
 
     const sortedData = useCallback(
@@ -81,6 +80,7 @@ function TableOrder({ data }: { data: Props[] }) {
                 sortKey,
                 reverse: sortOrder === "desc",
             }),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [data, sortKey, sortOrder],
     );
 
@@ -94,7 +94,7 @@ function TableOrder({ data }: { data: Props[] }) {
     const [searchTerm, setSearchTerm] = useState<string>("");
 
     const filteredRecords = sortedData().filter((order) =>
-        Object.values(order).some((value: any) =>
+        Object.values(order).some((value: string) =>
             value.toString().toLowerCase().includes(searchTerm.toLowerCase()),
         ),
     );
@@ -172,8 +172,8 @@ function TableOrder({ data }: { data: Props[] }) {
                         <input
                             type="search"
                             id="default-search"
-                            className="flex p ps-12 text-xs text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-mealshub-blue focus:border-mealshub-blue"
-                            placeholder="Search your orders"
+                            className="flex p ps-12 text-xs text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-plantix-blue focus:border-plantix-blue"
+                            placeholder="Search your data"
                             required
                             style={{
                                 width: "329.6px",
@@ -196,7 +196,7 @@ function TableOrder({ data }: { data: Props[] }) {
             </div>
             <div className="font-nunito relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
                 <table className="w-full text-xs text-left rtl:text-right">
-                    <thead className="text-xs text-mealshub-golden bg-mealshub-blue">
+                    <thead className="text-xs text-plantix-golden bg-plantix-blue">
                         <tr>
                             <th
                                 scope="col"
@@ -204,30 +204,12 @@ function TableOrder({ data }: { data: Props[] }) {
                             >
                                 No
                             </th>
-                            <th
-                                scope="col"
-                                className="px-6 py-3 font-semibold whitespace-nowrap"
-                            >
-                                Order Id
-                            </th>
-                            <th
-                                scope="col"
-                                className="px-6 py-3 font-semibold whitespace-nowrap"
-                            >
-                                Unique Code
-                            </th>
-                            <th
-                                scope="col"
-                                className="px-6 py-3 font-semibold whitespace-nowrap"
-                            >
-                                Table Id
-                            </th>
                             <th scope="col" className="px-6 py-3">
                                 <div className="flex items-center font-semibold">
-                                    Order Time
+                                    Sensor ID
                                     <SortButton
-                                        columnKey={"time"}
-                                        onClick={() => changeSort("time")}
+                                        columnKey={"sensorID"}
+                                        onClick={() => changeSort("sensorID")}
                                         {...{
                                             sortOrder,
                                             sortKey,
@@ -237,27 +219,10 @@ function TableOrder({ data }: { data: Props[] }) {
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 <div className="flex items-center font-semibold">
-                                    Order Status
+                                    Location ID
                                     <SortButton
-                                        columnKey={"orderStatus"}
-                                        onClick={() =>
-                                            changeSort("orderStatus")
-                                        }
-                                        {...{
-                                            sortOrder,
-                                            sortKey,
-                                        }}
-                                    />
-                                </div>
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                <div className="flex items-center font-semibold">
-                                    Payment Status
-                                    <SortButton
-                                        columnKey={"paymentStatus"}
-                                        onClick={() =>
-                                            changeSort("paymentStatus")
-                                        }
+                                        columnKey={"locationID"}
+                                        onClick={() => changeSort("locationID")}
                                         {...{
                                             sortOrder,
                                             sortKey,
@@ -269,53 +234,64 @@ function TableOrder({ data }: { data: Props[] }) {
                                 scope="col"
                                 className="px-6 py-3 font-semibold whitespace-nowrap"
                             >
-                                Details
+                                Timestamp
                             </th>
+                            <th
+                                scope="col"
+                                className="px-6 py-3 font-semibold whitespace-nowrap"
+                            >
+                                Air Humidity
+                            </th>
+                            <th
+                                scope="col"
+                                className="px-6 py-3 font-semibold whitespace-nowrap"
+                            >
+                                Soil Humidity
+                            </th>
+                            <th
+                                scope="col"
+                                className="px-6 py-3 font-semibold whitespace-nowrap"
+                            >
+                                Light Intensity
+                            </th>
+
                         </tr>
                     </thead>
                     <tbody>
                         {filteredRecords
                             .slice(firstIndex, lastIndex)
                             .map((record, index) => {
-                                const date = moment(record.time).format(
+                                const date = moment(record.timestamp).format(
                                     "DD/MM/YYYY hh:mm:ss",
                                 );
                                 return (
                                     <tr
                                         className="odd:bg-white even:bg-gray-50 border-b"
-                                        key={record.orderId}
+                                        key={record.sensorID}
                                     >
                                         <td className="px-6 py-4">
                                             {index +
                                                 1 +
                                                 (currentPage - 1) *
-                                                    recordsPerPage}
+                                                recordsPerPage}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            {record.orderId}
+                                            {record.sensorID}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            {record.paymentId}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-normal">
-                                            {record.tableId}
+                                            {record.locationID}
                                         </td>
                                         <td className="px-6 py-4 whitespace-normal">
                                             {date}
                                         </td>
                                         <td className="px-6 py-4 whitespace-normal">
-                                            {record.orderStatus}
+                                            {record.airhumidity}
                                         </td>
                                         <td className="px-6 py-4 whitespace-normal">
-                                            {record.paymentStatus}
+                                            {record.soilhumidity}
                                         </td>
-                                        <td className="px-6 py-4">
-                                            <a
-                                                href={`/tenant/orders/${record.orderId}`}
-                                                className="text-mealshub-blue hover:underline"
-                                            >
-                                                Click for Details
-                                            </a>
+                                        <td className="px-6 py-4 whitespace-normal">
+                                            {record.lightintensity}
                                         </td>
                                     </tr>
                                 );
@@ -349,9 +325,9 @@ function TableOrder({ data }: { data: Props[] }) {
                                     >
                                         <path
                                             stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
                                             d="M5 1 1 5l4 4"
                                         />
                                     </svg>
@@ -361,11 +337,10 @@ function TableOrder({ data }: { data: Props[] }) {
                                 <li>
                                     <a
                                         href="#"
-                                        className={`page-item ${
-                                            currentPage === n
-                                                ? "z-10 flex items-center justify-center px-3 h-8 leading-tight text-mealshub-blue rounded-lg bg-mealshub-greenpalet hover:bg-blue-100 hover:text-blue-700 mx-1"
-                                                : "flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 mx-1"
-                                        }`}
+                                        className={`page-item ${currentPage === n
+                                            ? "z-10 flex items-center justify-center px-3 h-8 leading-tight text-plantix-blue rounded-lg bg-plantix-greenpalet hover:bg-blue-100 hover:text-blue-700 mx-1"
+                                            : "flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 mx-1"
+                                            }`}
                                         key={i}
                                         onClick={() => setCurrentPage(n)}
                                     >
@@ -389,9 +364,9 @@ function TableOrder({ data }: { data: Props[] }) {
                                     >
                                         <path
                                             stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
                                             d="m1 9 4-4-4-4"
                                         />
                                     </svg>
@@ -420,4 +395,4 @@ function TableOrder({ data }: { data: Props[] }) {
     );
 }
 
-export default TableOrder;
+export default TableData;
