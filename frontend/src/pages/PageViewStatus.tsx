@@ -1,28 +1,34 @@
 import Sidebar from "../components/Sidebar";
 import Welcome from "../components/Welcome";
 import StatusCard from "../components/StatusCard";
-// import data from "../dataOrder.json";
-// import TableOrder from "../components/TableOrder";
+import { useState } from "react";
+import axios from "axios";
+
+interface Status {
+    id: number;
+    id_sensor: number;
+    watering: boolean;
+    fertilizing: boolean;
+    pest_detection: boolean;
+}
 
 export default function PageViewStatus() {
-    // const tenantid = us    const { user, logout } = useAuth();
-    // const [showProfileDropDown, setShowProfileDropDown] = useState(false);
+    const [sensorId, setSensorId] = useState('');
+    const [status, setStatus] = useState<Status>();
 
-    // const navigate = useNavigate();
-    // const [params] = useSearchParams();
-    // const returnUrl = params.get("returnUrl");
+    const getStatus = async () => {
+        try {
+            const res = await axios.get(`https://plantix.azurewebsites.net/status/${sensorId}`);
+            setStatus(res.data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
-    // useEffect(() => {
-    //     if (!user) return;
-    //     returnUrl ? navigate(returnUrl) : navigate(returnUrl);
-    // }, [user]);
+    const handleSearch = () => {
+        getStatus();
+    }
 
-    // const handleProfileClick = () => {
-    //     setShowProfileDropDown(!showProfileDropDown);
-    // };
-    // const data = joinedOrderPayment();
-    // console.log(data);
-    // const databytenant = data.filter((data: any) => data.tenantId == tenantid);
     return (
         // Create grid layout for sidebard, header, and main content
         <div className="grid grid-cols-5 grid-rows-8 min-h-screen bg-plantix-light-green">
@@ -49,10 +55,29 @@ export default function PageViewStatus() {
                     <Welcome />
                 </div>
                 <div className="mx-20 mt-6 mb-9 py-8 bg-white rounded-3xl h-auto">
+                <form className="ms-16"
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            handleSearch();
+                        }}
+                    >
+                        <label className="text-plantix-yellow text-2xl font-bold">
+                            Sensor ID :
+                            <input
+                                type="number"
+                                value={sensorId}
+                                onChange={(e) => setSensorId(e.target.value)}
+                                className="ps-2 ml-4 rounded-lg bg-gray-300 text-lg"
+                            />
+                        </label>
+                        <button type="submit" className="ms-10 text-white bg-plantix-light-green hover:text-plantix-light-green border-2 border-plantix-light-green  hover:bg-white font-bold text-lg rounded-full text-sm px-4 py-2 text-center shadow-xl">Search</button>
+                    </form>
+                </div>
+                <div className="mx-20 mt-6 mb-9 py-8 bg-white rounded-3xl h-auto">
                     <h2 className="text-plantix-yellow text-5xl font-bold ms-16">
                         Status
                     </h2>
-                    <StatusCard />
+                    { status === undefined ? <p className="text-plantix-light-green text-2xl font-bold ms-16 mt-10">No data</p> : <StatusCard data={status} />}
                 </div>
             </div>
         </div>
